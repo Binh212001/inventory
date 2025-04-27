@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ApiModule } from './api/api.module';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -18,9 +19,15 @@ import { TypeOrmConfigService } from './database/typeorm-config.service';
         await dataSource.initialize();
         return dataSource;
       },
-      imports:[ConfigModule]
+      imports: [ConfigModule],
     }),
     ApiModule,
+  ],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
   ],
 })
 export class AppModule {}
