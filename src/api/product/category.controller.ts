@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
   Query,
   Req,
@@ -35,5 +37,10 @@ export class CategoryController {
   @Get()
   async getCategories(@Query() dto: PageOptionsDto) {
     return await this.categoryService.getCategories(dto);
+  }
+
+  @Delete('/:id')
+  async deleteCategory(@Param('id') id: string) {
+    return await this.categoryService.deleteCategory(id);
   }
 }

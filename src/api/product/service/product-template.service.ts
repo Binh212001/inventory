@@ -26,7 +26,7 @@ export class ProductTemplateService {
   ): Promise<ProductTemplate> {
     const productTemplate = this.productTemplateRepository.create({
       ...dto,
-      image: files,
+      images: files,
     });
     return this.productTemplateRepository.save(productTemplate);
   }
@@ -36,9 +36,7 @@ export class ProductTemplateService {
 
     const query = this.productTemplateRepository
       .createQueryBuilder('products')
-      .leftJoinAndSelect('products.variants', 'variants')
-      .leftJoinAndSelect('products.attributes', 'attributes');
-    // .leftJoinAndSelect('attributes.values', 'values');
+      .leftJoinAndSelect('products.variants', 'variants');
 
     if (q) {
       query.where('products.name ilike :q', { q });
@@ -55,12 +53,18 @@ export class ProductTemplateService {
   async findOne(id: string): Promise<ProductTemplate | null> {
     return this.productTemplateRepository.findOne({
       where: { id },
-      relations: ['variants'],
     });
   }
 
-  async update(id: string, dto: ProductTemplateReqDto): Promise<boolean> {
-    await this.productTemplateRepository.update(id, dto);
+  async update(
+    id: string,
+    dto: ProductTemplateReqDto,
+    images: string[],
+  ): Promise<boolean> {
+    await this.productTemplateRepository.update(id, {
+      ...dto,
+      images: images,
+    });
     return true;
   }
 

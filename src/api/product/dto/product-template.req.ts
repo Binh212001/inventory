@@ -1,12 +1,15 @@
 import {
   IsArray,
   IsBoolean,
+  IsEnum,
   IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
 import { ProductVariantReqDto } from './product-variant.req';
 import { Transform } from 'class-transformer';
+import { ProductStatus } from '../enums/product-status.enum';
+import { Stock } from '../enums/stock.enum';
 
 export class ProductTemplateReqDto {
   @IsString()
@@ -27,6 +30,14 @@ export class ProductTemplateReqDto {
   @IsOptional()
   @IsString()
   barcode: string;
+
+  @IsOptional()
+  @IsEnum(() => Stock)
+  stock: Stock;
+
+  @IsOptional()
+  @IsEnum(() => ProductStatus)
+  status: ProductStatus;
 
   @IsOptional()
   @IsArray()

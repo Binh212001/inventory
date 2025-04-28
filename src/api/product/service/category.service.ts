@@ -40,4 +40,8 @@ export class CategoryService {
     }
     return await this.categoryRepository.find({});
   }
+
+  async deleteCategory(id: string) {
+    return await this.categoryRepository.delete(id);
+  }
 }

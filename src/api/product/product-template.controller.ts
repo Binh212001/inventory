@@ -38,8 +38,13 @@ export class ProductTemplateController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() dto: ProductTemplateReqDto) {
-    return this.productTemplateService.update(id, dto);
+  @UseInterceptors(new BunnyUploadInterceptor())
+  async update(
+    @Param('id') id: string,
+    @Req() req,
+    @Body() dto: ProductTemplateReqDto,
+  ) {
+    return this.productTemplateService.update(id, dto, req.fileUrls);
   }
 
   @Delete(':id')

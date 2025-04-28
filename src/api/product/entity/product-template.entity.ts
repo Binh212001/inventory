@@ -2,6 +2,8 @@ import { AbstractEntity } from 'src/database/entity/abstract.entity';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { v7 } from 'uuid';
 import { ProductVariant } from './product-variant.entity';
+import { ProductStatus } from '../enums/product-status.enum';
+import { Stock } from '../enums/stock.enum';
 
 @Entity('product_templates')
 export class ProductTemplate extends AbstractEntity {
@@ -26,10 +28,24 @@ export class ProductTemplate extends AbstractEntity {
   description: string;
 
   @Column({ type: 'jsonb', nullable: false })
-  image: string[];
+  images: string[];
 
   @Column({ type: 'int', default: 0 })
   price: number;
+
+  @Column({
+    type: 'enum',
+    enum: ProductStatus,
+    default: ProductStatus.PUBLISH,
+  })
+  status: ProductStatus;
+
+  @Column({
+    type: 'enum',
+    enum: Stock,
+    default: Stock.IN_STOCK,
+  })
+  stock: Stock;
 
   @Column({ type: 'boolean', default: true })
   active: boolean;
