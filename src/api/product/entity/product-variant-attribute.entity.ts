@@ -18,7 +18,7 @@ export class ProductVariantAttribute extends AbstractEntity {
   name: string; // Ví dụ: "Màu sắc", "Kích thước"
 
   @OneToMany(() => ProductVariantValue, (value) => value.attribute, {
-    cascade: true,
+    eager: true,
   })
   values: ProductVariantValue[]; // Danh sách các giá trị liên quan đến thuộc tính này
 }

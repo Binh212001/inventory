@@ -16,6 +16,12 @@ export class ProductTemplate extends AbstractEntity {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
+  @Column({ nullable: true })
+  sku: string;
+
+  @Column({ nullable: true })
+  barcode: string;
+
   @Column({ type: 'text', nullable: true })
   description: string;
 
@@ -29,7 +35,7 @@ export class ProductTemplate extends AbstractEntity {
   active: boolean;
 
   @OneToMany(() => ProductVariant, (variant) => variant.productTemplate, {
-    cascade: true,
+    eager: true,
   })
   variants: ProductVariant[];
 }

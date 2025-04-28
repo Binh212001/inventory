@@ -17,7 +17,7 @@ export class ProductVariantValue extends AbstractEntity {
   value: string; // Ví dụ: "Đỏ", "Xanh", "Lớn", "Nhỏ"
 
   @ManyToOne(() => ProductVariantAttribute, (attribute) => attribute.values, {
-    onDelete: 'CASCADE',
+    cascade: true,
   })
   attribute: ProductVariantAttribute; // Thuộc tính mà giá trị này thuộc về
 }

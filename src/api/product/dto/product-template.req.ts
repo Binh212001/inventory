@@ -6,6 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 import { ProductVariantReqDto } from './product-variant.req';
+import { Transform } from 'class-transformer';
 
 export class ProductTemplateReqDto {
   @IsString()
@@ -15,11 +16,17 @@ export class ProductTemplateReqDto {
   @IsString()
   description?: string;
 
+  @Transform(({ value }) => Number(value))
   @IsNumber()
   price: number;
 
-  @IsBoolean()
-  active: boolean;
+  @IsOptional()
+  @IsString()
+  sku: string;
+
+  @IsOptional()
+  @IsString()
+  barcode: string;
 
   @IsOptional()
   @IsArray()
