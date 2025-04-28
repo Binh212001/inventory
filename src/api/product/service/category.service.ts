@@ -4,6 +4,7 @@ import { ILike } from 'typeorm';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { Category } from '../entity/category.entity';
 import { CategoryRepository } from '../repository/category.repository';
+import { VariantAttribute } from '../dto/variant.req';
 
 @Injectable()
 export class CategoryService {
