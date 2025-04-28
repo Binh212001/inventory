@@ -1,11 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { AbstractEntity } from 'src/database/entity/abstract.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { v7 } from 'uuid';
 import { ProductVariant } from './product-variant.entity';
-import { ImageDto } from 'src/common/dto/image.dto';
 
 @Entity('product_templates')
-export class ProductTemplate {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class ProductTemplate extends AbstractEntity {
+  constructor(data?: Partial<ProductTemplate>) {
+    super();
+    this.id = v7();
+    Object.assign(this, data);
+  }
+  @PrimaryColumn()
+  id: string;
 
   @Column({ type: 'varchar', length: 255 })
   name: string;

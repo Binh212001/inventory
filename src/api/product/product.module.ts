@@ -10,6 +10,7 @@ import { CategoryRepository } from './repository/category.repository';
 import { CategoryService } from './service/category.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Category } from './entity/category.entity';
+import { TreeRepository } from 'typeorm';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Category, CategoryRepository])],
@@ -22,6 +23,7 @@ import { Category } from './entity/category.entity';
     ProductVariantAttributeRepository,
     ProductTemplateService,
     CategoryService,
+    TreeRepository,
   ],
   exports: [
     ProductTemplateRepository,

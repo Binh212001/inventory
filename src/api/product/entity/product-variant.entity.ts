@@ -1,10 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { AbstractEntity } from 'src/database/entity/abstract.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { v7 } from 'uuid';
 import { ProductTemplate } from './product-template.entity';
-
 @Entity('product_variants')
-export class ProductVariant {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class ProductVariant extends AbstractEntity {
+  constructor(data?: Partial<ProductVariant>) {
+    super();
+    this.id = v7();
+    Object.assign(this, data);
+  }
+  @PrimaryColumn()
+  id: string;
 
   @Column({ type: 'varchar', length: 50 })
   sku: string;

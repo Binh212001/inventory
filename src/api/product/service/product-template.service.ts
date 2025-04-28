@@ -15,7 +15,6 @@ export class ProductTemplateService {
     private readonly productVariantRepository: ProductVariantRepository,
     private readonly productVariantAttributeRepository: ProductVariantAttributeRepository,
     private readonly productVariantValueRepository: ProductVariantValueRepository,
-
   ) {}
 
   async create(dto: ProductTemplateReqDto): Promise<ProductTemplate> {
@@ -27,18 +26,19 @@ export class ProductTemplateService {
     return this.productTemplateRepository.find({ relations: ['variants'] });
   }
 
-  async findOne(id: number): Promise<ProductTemplate | null> {
-    return this.productTemplateRepository.findOne( {
-        where:{id},
-        relations: ['variants'] });
+  async findOne(id: string): Promise<ProductTemplate | null> {
+    return this.productTemplateRepository.findOne({
+      where: { id },
+      relations: ['variants'],
+    });
   }
 
-  async update(id: number, dto: ProductTemplateReqDto): Promise<boolean> {
+  async update(id: string, dto: ProductTemplateReqDto): Promise<boolean> {
     await this.productTemplateRepository.update(id, dto);
-    return  true
+    return true;
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.productTemplateRepository.delete(id);
   }
 }

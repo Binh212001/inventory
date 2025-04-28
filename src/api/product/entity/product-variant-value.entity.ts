@@ -1,10 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { AbstractEntity } from 'src/database/entity/abstract.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { v7 } from 'uuid';
 import { ProductVariantAttribute } from './product-variant-attribute.entity';
 
 @Entity('product_variant_values')
-export class ProductVariantValue {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class ProductVariantValue extends AbstractEntity {
+  constructor(data?: Partial<ProductVariantValue>) {
+    super();
+    this.id = v7();
+    Object.assign(this, data);
+  }
+  @PrimaryColumn()
+  id: string;
 
   @Column({ type: 'varchar', length: 100 })
   value: string; // Ví dụ: "Đỏ", "Xanh", "Lớn", "Nhỏ"

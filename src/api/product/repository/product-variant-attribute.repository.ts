@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { BaseRepository } from 'src/database/base.repository';
+import { DataSource } from 'typeorm';
 import { ProductVariantAttribute } from './../entity/product-variant-attribute.entity';
 
 @Injectable()
-export class ProductVariantAttributeRepository extends Repository<ProductVariantAttribute>{
+export class ProductVariantAttributeRepository extends BaseRepository<ProductVariantAttribute> {
+  constructor(private readonly dataSource: DataSource) {
+    super(ProductVariantAttribute, dataSource.manager);
+  }
 }
