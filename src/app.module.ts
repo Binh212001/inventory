@@ -5,6 +5,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { ApiModule } from './api/api.module';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { APP_PIPE } from '@nestjs/core';
+import { CustomerModule } from './api/customer/customer.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { APP_PIPE } from '@nestjs/core';
       imports: [ConfigModule],
     }),
     ApiModule,
+    CustomerModule,
   ],
   providers: [
     {

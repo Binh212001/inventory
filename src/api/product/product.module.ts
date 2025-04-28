@@ -32,6 +32,8 @@ import { TreeRepository } from 'typeorm';
     CategoryRepository,
     ProductVariantAttributeRepository,
     ProductTemplateService,
+    CategoryService,
+    TreeRepository,
   ],
 })
 export class ProductModule {}

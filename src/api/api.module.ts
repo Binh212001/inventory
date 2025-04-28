@@ -1,12 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ProductModule } from './product/product.module';
-import { CategoryController } from './product/category.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmConfigService } from 'src/database/typeorm-config.service';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { CustomerModule } from './customer/customer.module';
 
 @Module({
-  imports: [ProductModule],
+  imports: [ProductModule, CustomerModule],
 })
 export class ApiModule {}
