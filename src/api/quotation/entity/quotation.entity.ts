@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from 'typeorm';
 import { v4 as uuidv4, v7 } from 'uuid';
 import { AbstractEntity } from 'src/database/entity/abstract.entity';
-import { Customer } from 'src/api/customer/entity/customer.entity';
+import { User } from 'src/api/user/entity/user.entity';
 import { QuotationItem } from './quotation-item.entity';
 
 export enum QuotationStatus {
@@ -21,8 +21,8 @@ export class Quotation extends AbstractEntity {
   @PrimaryColumn()
   id: string;
 
-  @ManyToOne(() => Customer, { eager: true })
-  customer: Customer;
+  @ManyToOne(() => User, { eager: true })
+  customer: User;
 
   @OneToMany(() => QuotationItem, (item) => item.quotation, {
     cascade: true,

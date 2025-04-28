@@ -13,7 +13,7 @@ import { QuotationRepository } from './repository/quotation.repository';
 import { QuotationItemRepository } from './repository/quotation-item.repository';
 import { ProductModule } from '../product/product.module';
 import { ProductVariantRepository } from '../product/repository/product-variant.repository';
-import { CustomerRepository } from '../customer/repository/customer.repository';
+import { UserRepository } from '../user/repository/user.repository';
 import { PageOptionsDto } from 'src/common/dto/offset-pagination/page-options.dto';
 import { paginate } from 'src/utils/offset-pagination';
 import { OffsetPaginatedDto } from 'src/common/dto/offset-pagination/paginated.dto';
@@ -24,7 +24,7 @@ export class QuotationService {
     private readonly quotationRepository: QuotationRepository,
     private readonly quotationItemRepository: QuotationItemRepository,
     private readonly productTemplateRepository: ProductTemplateRepository,
-    private readonly customerRepository: CustomerRepository,
+    private readonly customerRepository: UserRepository,
   ) {}
   async create(dto: QuotationReq): Promise<Quotation> {
     const { customerId, items } = dto;

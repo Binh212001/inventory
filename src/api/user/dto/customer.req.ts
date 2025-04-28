@@ -27,4 +27,7 @@ export class CustomerReq {
 
   @IsBoolean()
   useAsBillingAddress: boolean;
+
+  @IsBoolean()
+  isCustomer: boolean;
 }
