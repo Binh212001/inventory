@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PageOptionsDto } from 'src/common/dto/offset-pagination/page-options.dto';
-import { ILike } from 'typeorm';
+import { ILike, Like } from 'typeorm';
 import { CreateCategoryDto } from '../dto/create-category.dto';
 import { Category } from '../entity/category.entity';
 import { CategoryRepository } from '../repository/category.repository';
@@ -35,7 +35,7 @@ export class CategoryService {
     if (q) {
       return await this.categoryRepository.find({
         where: {
-          name: ILike(q),
+          name: ILike(`%${q}%`),
         },
       });
     }

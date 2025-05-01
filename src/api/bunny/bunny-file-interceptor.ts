@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import {
   CallHandler,
   ExecutionContext,
@@ -28,6 +29,7 @@ export class BunnyUploadInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
     const res = context.switchToHttp().getResponse();
+    console.log('🚀 ~ BunnyUploadInterceptor ~ switchMap ~ req:', req.body);
 
     return new Observable((observer) => {
       this.multerInstance(req, res, (err: any) => {

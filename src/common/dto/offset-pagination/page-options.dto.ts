@@ -24,7 +24,6 @@ export class PageOptionsDto {
   @IsOptional()
   @Type(() => String)
   @IsString()
-  @Min(1)
   q: string;
 
   @IsOptional()

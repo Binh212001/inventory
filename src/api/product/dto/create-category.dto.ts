@@ -1,4 +1,5 @@
 // create-category.dto.ts
+import { Type } from 'class-transformer';
 import { IsString, IsOptional, IsInt } from 'class-validator';
 
 export class CreateCategoryDto {
@@ -9,8 +10,10 @@ export class CreateCategoryDto {
   slug: string;
 
   @IsString()
+  description: string;
+  @Type(() => File)
   @IsOptional()
-  image: string;
+  image: File;
 
   @IsInt()
   @IsOptional()

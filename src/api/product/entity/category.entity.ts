@@ -23,6 +23,9 @@ export class Category extends AbstractEntity {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
+  @Column({ nullable: true })
+  description: string;
+
   @Column({ type: 'varchar', length: 255 })
   slug: string;
 
